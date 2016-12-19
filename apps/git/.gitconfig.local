@@ -1,0 +1,6 @@
+[user]
+	name = Aurimas Niekis
+	email = aurimas@niekis.lt
+	signingkey = 8A8FCFB2
+[commit]
+	gpgsign = true

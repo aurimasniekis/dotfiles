@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+
+wallpaper="/Users/$USER/Google Drive/Wallpapers/wallpaper.jpg"
+
+if [ -f "$wallpaper" ]; then
+    new_checksum=$(shasum -a 256 "$wallpaper" | awk '{ print $1 }')
+    old_checksum=$(defaults read com.aniekis.wallpaper sha256)
+
+    if [ $? -eq 0 ]; then
+        if [ "$new_checksum" != "$old_checksum" ]; then
+            /usr/local/bin/wallpaperutil -s "$wallpaper"
+            defaults write com.aniekis.wallpaper sha256 -string "$new_checksum"
+            /usr/local/bin/terminal-notifier -sound default -message "Wallpaper updated to latest" -title ".dotFiles"
+        else
+            echo "Wallpaper did not changed"
+        fi
+    else
+        /usr/local/bin/wallpaperutil -s "$wallpaper"
+        defaults write com.aniekis.wallpaper sha256 -string "$new_checksum"
+        /usr/local/bin/terminal-notifier -sound default -message "Wallpaper updated to latest" -title ".dotFiles"
+    fi
+else
+    echo "No wallpaper found at ~/Google Drive/Wallpapers/wallpaper.jpg"
+fi

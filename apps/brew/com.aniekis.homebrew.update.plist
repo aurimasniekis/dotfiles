@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>com.aniekis.homebrew.update</string>
+    <key>ProcessType</key>
+    <string>Background</string>
+    <key>ProgramArguments</key>
+    <array>
+        <string>/bin/sh</string>
+        <string>-c</string>
+        <string>/usr/local/bin/brew update &amp;&amp; /usr/local/bin/brew upgrade &amp;&amp; /usr/local/bin/terminal-notifier -title '.dotFiles' -message 'Homebrew upgraded!' -appIcon https://i.imgur.com/eah71qV.png</string>
+    </array>
+    <key>StandardErrorPath</key>
+    <string>/tmp/com.aniekis.homebrew.update.stderr</string>
+    <key>StandardOutPath</key>
+    <string>/tmp/com.aniekis.homebrew.update.stdout</string>
+    <key>RunAtLoad</key>
+    <true/>
+    <key>StartInterval</key>
+    <integer>28800</integer>
+</dict>
+</plist>
