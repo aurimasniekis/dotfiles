@@ -30,7 +30,7 @@ source ./osx/set-defaults.sh
 
 bot "Setting Google Drive"
 open /Applications/Google\ Drive.app
-until [ -f ~/Google\ Drive\Mackup ]
+until [ -d ~/Google\ Drive/Mackup ]
 do
     running "Waiting for ~/Google Drive to appear"
     sleep 10

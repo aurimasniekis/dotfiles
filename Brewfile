@@ -51,6 +51,7 @@ brew 'cmake'
 brew 'curl' # write alias
 brew 'diff-so-fancy'
 brew 'dockutil'
+brew 'elm'
 brew 'ffmpeg'
 brew 'go'
 brew 'grc'
