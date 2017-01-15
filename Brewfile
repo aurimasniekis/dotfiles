@@ -48,6 +48,7 @@ brew 'ack'
 brew 'autoconf'
 brew 'automake'
 brew 'cmake'
+brew 'crystal-lang'
 brew 'curl' # write alias
 brew 'diff-so-fancy'
 brew 'dockutil'
@@ -127,7 +128,9 @@ cask "sketch-toolbox"
 cask "skype"
 cask "slack"
 cask "sourcetree"
+cask "spotify"
 cask "textmate"
+cask "textual"
 cask "transmission"
 cask "vagrant"
 cask "virtualbox"
