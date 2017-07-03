@@ -69,6 +69,7 @@ brew 'redis', restart_service: true
 brew 'siege'
 brew 'spark'
 brew 'terminal-notifier'
+brew 'thefuck'
 brew 'unrar'
 brew 'wallpaperutil'
 brew 'watch'
