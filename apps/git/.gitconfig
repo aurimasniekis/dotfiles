@@ -256,4 +256,6 @@
 [user]
 	signingkey = 37DDA670
 [commit]
-	gpgsign = true
+	gpgsign = false
+[http]
+	postBuffer = 524288000

@@ -1,0 +1,49 @@
+#!/usr/bin/env php
+<?php
+
+$dump = shell_exec('brew bundle dump --file=-');
+
+$dump = explode(PHP_EOL, $dump);
+
+$raw = [];
+
+$result = [];
+
+foreach ($dump as $line) {
+    if (preg_match('/([^\s]+)\s"([^"]+)"/', $line, $matches)) {
+        $name = explode('/', $matches[2]);
+
+        $result[$matches[1]][] = end($name);
+        $raw[$matches[1] . '_' . end($name)] = $line;
+    }
+}
+
+$brewFile = file_get_contents('/Users/aniekis/.dotfiles/BrewFile');
+
+$brewFile = explode(PHP_EOL, $brewFile);
+
+$brewFileResult = [];
+
+foreach ($brewFile as $line) {
+    if (preg_match('/([^\s]+)\s[\'"]([^"\']+)["\']/', $line, $matches)) {
+        $name = explode('/', $matches[2]);
+
+        $brewFileResult[$matches[1]][] = end($name);
+        $raw[$matches[1] . '_' . end($name)] = $line;
+    }
+}
+
+$bKeys = array_keys($brewFileResult);
+$aKeys = array_keys($result);
+
+$keys = array_unique(array_merge($bKeys, $aKeys));
+
+foreach ($keys as $type) {
+    $diff = array_diff($result[$type] ?? [], $brewFileResult[$type] ?? []);
+
+    sort($diff);
+
+    foreach ($diff as $name) {
+        echo str_replace('"', '\'', $raw[$type . '_' . $name] . PHP_EOL);
+    }
+}
